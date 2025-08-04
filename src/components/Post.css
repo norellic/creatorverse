@@ -1,0 +1,31 @@
+.whole_post {
+    background-color: white;
+    border-radius: 20px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.edit_post { 
+    align-self: flex-end;
+    width: 20%;
+}
+
+.post_title {
+    align-self: flex-start;
+}
+
+.post_footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post_footer p {
+    width: 45%;
+    word-wrap: break-word;
+}

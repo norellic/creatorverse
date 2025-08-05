@@ -4,27 +4,10 @@ import { lockedOutSupabase } from './client.js'
 import Post from './components/Post.jsx'
 import CreatePost from './components/CreatePost.jsx'
 
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import HomePage from './pages/HomePage.jsx'
+
 function App() {
-  
-  const [posts, setPosts] = useState([])
-
-  //fetch data
-  useEffect(() => {
-
-    const fetchPosts = async () => {
-      const {data} = await lockedOutSupabase
-      .from ('Posts')
-      .select()
-      .order('created_at', { ascending: true })
-
-      setPosts(data)
-      console.log(data)
-    }
-
-    fetchPosts()
-  }, [])
-
-  //routes
 
   return (
     <>
@@ -33,23 +16,12 @@ function App() {
       </div>
 
       <div className="whole_page">
-        <div className="post_feed">
-
-          < CreatePost />
-          {
-            posts && posts.length > 0 ?
-            [...posts]
-            .sort((a, b) => a.id - b.id)
-            .map((post, index) =>
-              < Post
-                key={post.id}
-                id={post.id}
-                title={post.title}
-                created_at={post.created_at}
-                likes={post.likes}
-              />) : <h2>'thats rough buddy'</h2>
-          }
-        </div>
+        <Router>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            {/* <Route path="/edit/:id" element={<EditPost />} /> */}
+          </Routes>
+        </Router>
       </div>
     </>
   )

@@ -22,6 +22,8 @@ const HomePage = () => {
         fetchPosts()
     }, [])
 
+
+    /* search bar */
     return (
         <div className="post_feed">
 

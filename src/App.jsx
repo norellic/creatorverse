@@ -1,28 +1,28 @@
-import { useState, useEffect } from 'react'
 import './App.css'
-import { lockedOutSupabase } from './client.js'
-import Post from './components/Post.jsx'
-import CreatePost from './components/CreatePost.jsx'
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import HomePage from './pages/HomePage.jsx'
+import EditPost from './pages/EditPost.jsx'
+import PostDetail from './pages/PostDetail.jsx';
 
 function App() {
 
   return (
     <>
+    <Router>
       <div className="navbar">
-        <h3 className="navbar_text">Home</h3>
+        <Link to="/"><button className="navbar_text">Home</button></Link>
       </div>
 
       <div className="whole_page">
-        <Router>
+        
           <Routes>
             <Route path="/" element={<HomePage />} />
-            {/* <Route path="/edit/:id" element={<EditPost />} /> */}
+            <Route path="/edit/:id" element={<EditPost />} />
+            <Route path="/detail/:id" element={<PostDetail />} />
           </Routes>
-        </Router>
       </div>
+      </Router>
     </>
   )
 }

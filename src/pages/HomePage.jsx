@@ -2,7 +2,6 @@ import { lockedOutSupabase } from '../client.js'
 import Post from '../components/Post.jsx'
 import CreatePost from '../components/CreatePost.jsx'
 import { useState, useEffect } from 'react'
-import './HomePage.css'
 
 const HomePage = () => {
 

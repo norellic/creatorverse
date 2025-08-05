@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import { lockedOutSupabase } from './client.js'
 import Post from './components/Post.jsx'
+import CreatePost from './components/CreatePost.jsx'
 
 function App() {
-
-  //fetch data
+  
   const [posts, setPosts] = useState([])
 
+  //fetch data
   useEffect(() => {
 
     const fetchPosts = async () => {
@@ -33,6 +34,8 @@ function App() {
 
       <div className="whole_page">
         <div className="post_feed">
+
+          < CreatePost />
           {
             posts && posts.length > 0 ?
             [...posts]

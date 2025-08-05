@@ -10,7 +10,7 @@ const Post = (props) => {
             <h1 className="post_title">{props.title}</h1> {/* button to open the post with color change*/}
             <div className="post_footer">
                 <p>{created_at}</p>
-                <p>{props.likes}</p>
+                <button>{props.likes}</button>
             </div>
         </div>
 

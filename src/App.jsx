@@ -4,12 +4,21 @@ import { Link } from 'react-router-dom';
 import HomePage from './pages/HomePage.jsx'
 import EditPost from './pages/EditPost.jsx'
 import PostDetail from './pages/PostDetail.jsx';
+import Login from './pages/Login.jsx';
+import SignUp from './pages/SignUp.jsx';
 
 import { useState, useEffect } from 'react';
 import { lockedOutSupabase } from './client.js';
 import SearchResults from './pages/SearchResults.jsx';
 
+import { Navigate } from 'react-router-dom';
+
 function App() {
+
+  function ProtectedRoute({ children }) {
+    const user = localStorage.getItem('user');
+    return user ? children : <Navigate to="/login" />;
+  }
 
   const [search, setSearch] = useState("");
   const [matchingPosts, setMatchingPosts] = useState([])
@@ -32,6 +41,7 @@ function App() {
   return (
     <>
     <Router>
+      
       <div className="navbar">
 
         <div className="searchbar">
@@ -59,7 +69,10 @@ function App() {
       <div className="whole_page">
         
           <Routes>
-            <Route path="/" element={<HomePage />} /> 
+            {/* <Route path="/" element={<HomePage />} />  */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
             <Route path="/search-results/:search" element={<SearchResults />} />
             <Route path="/edit/:id" element={<EditPost />} />
             <Route path="/detail/:id" element={<PostDetail />} />

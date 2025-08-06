@@ -1,9 +1,23 @@
 import './Post.css'
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { lockedOutSupabase } from '../client';
 
 const Post = (props) => {
 
     const created_at = props.created_at.slice(0, 10);
+    const [likes, setLikes] = useState(props.likes)
+
+    const addLike = async() => {
+        const newLikes = likes + 1
+        setLikes(newLikes)
+
+        await lockedOutSupabase
+        .from('Posts')
+        .update({likes: newLikes})
+        .eq('id', props.id)
+        .select()
+    }
 
     return (
         <div className="whole_post"> {/* shift + alt + a for comments */}
@@ -12,7 +26,7 @@ const Post = (props) => {
             <Link to={'detail/'+ props.id}> <button className="edit_post">see more</button> </Link>
             <div className="post_footer">
                 <p>{created_at}</p>
-                <button>{props.likes}</button>
+                <button onClick={addLike}>{likes}</button>
             </div>
         </div>
 

@@ -13,7 +13,7 @@ const HomePage = () => {
         const {data} = await lockedOutSupabase
         .from ('Posts')
         .select()
-        .order('created_at', { ascending: true })
+        .order('created_at', { ascending: false })
 
         setPosts(data)
         }
@@ -21,10 +21,15 @@ const HomePage = () => {
         fetchPosts()
     }, [])
 
+    const sortbyLikes = () => {
+
+    }
+
     return (
         <div className="post_feed">
 
           < CreatePost />
+
           <PostFeed posts={posts} />
 
         </div>

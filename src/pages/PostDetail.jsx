@@ -2,15 +2,16 @@ import { useParams } from 'react-router-dom'
 import { lockedOutSupabase } from '../client'
 import { useEffect, useState } from 'react'
 
-
 const PostDetail = () => {
 
     const [post, setPost] = useState({title: "", subtitle: "", image: ""})
     const [comment, setComment] = useState("")
     const [comments, setComments] = useState([])
+    const [likes, setLikes] = useState(0)
     const {id} = useParams()
+    const [createdAt, setCreatedAt] = useState("");
 
-    const fetchComments = async(event) => {
+    const fetchComments = async() => {
 
         const {data} = await lockedOutSupabase
         .from('Comments')
@@ -18,13 +19,11 @@ const PostDetail = () => {
         .eq('postId', id)
         .order('created_at', {ascending: true})
         
-
         setComments(data)
-        console.log(data)
     }
 
     useEffect(() => {
-        const fetchPostData = async(event) => {
+        const fetchPostData = async() => {
 
             const {data} = await lockedOutSupabase
             .from('Posts')
@@ -32,7 +31,10 @@ const PostDetail = () => {
             .eq('id', id)
 
             if (data && data.length > 0) {
-                setPost(data[0])
+                const postData = data[0];
+                setPost(postData)
+                setLikes(postData.likes)
+                setCreatedAt(postData.created_at.slice(0, 10));
             }
         }
         fetchPostData();
@@ -56,10 +58,26 @@ const PostDetail = () => {
         setComment(event.target.value)
     }
 
+    const addLike = async() => {
+        const newLikes = likes + 1
+        setLikes(newLikes)
+
+        await lockedOutSupabase
+        .from('Posts')
+        .update({likes: newLikes})
+        .eq('id', id)
+        .select()
+    }
+
     return (
         <div>
             <p>{post.title}</p>
-            {post.subtitle}
+            <p>{post.subtitle}</p>
+            <p>{createdAt}</p>
+            <button onClick={addLike}>{likes}</button>
+
+            {post.image.length > 0 && <img src={post.image} />}
+
             
             {/* COMMENT FORM */}
             <form>
@@ -82,8 +100,7 @@ const PostDetail = () => {
                 <p>No comments yet</p>
                 )
             }
-</div>
-
+            </div>
         </div>
     )
 }

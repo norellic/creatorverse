@@ -1,6 +1,8 @@
 .whole_post {
     background-color: white;
     border-radius: 20px;
+    border-style: solid;
+    border-color: #8B61A2;
     color: black;
     display: flex;
     flex-direction: column;

@@ -10,6 +10,19 @@ const PostDetail = () => {
     const [comments, setComments] = useState([])
     const {id} = useParams()
 
+    const fetchComments = async(event) => {
+
+        const {data} = await lockedOutSupabase
+        .from('Comments')
+        .select()
+        .eq('postId', id)
+        .order('created_at', {ascending: true})
+        
+
+        setComments(data)
+        console.log(data)
+    }
+
     useEffect(() => {
         const fetchPostData = async(event) => {
 
@@ -23,25 +36,9 @@ const PostDetail = () => {
             }
         }
         fetchPostData();
+        fetchComments();
 
-    }, [])
-
-    useEffect(() => {
-        const fetchComments = async(event) => {
-
-            const {data} = await lockedOutSupabase
-            .from('Comments')
-            .select()
-            .eq('postId', id)
-            .order('created_at', {ascending: true})
-            
-
-            setComments(data)
-            console.log(data)
-        }
-        fetchComments()
-    }, [])
-
+    }, [id])
 
     const submitComment = async(event) => {
         event.preventDefault(); // prevents page refresh
@@ -52,6 +49,7 @@ const PostDetail = () => {
         .select()
 
         setComment("")
+        fetchComments();
     }
 
     const handleChange = (event) => {

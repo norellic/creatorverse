@@ -1,7 +1,7 @@
 import { lockedOutSupabase } from '../client.js'
-import Post from '../components/Post.jsx'
-import CreatePost from '../components/CreatePost.jsx'
 import { useState, useEffect } from 'react'
+import CreatePost from '../components/CreatePost.jsx'
+import PostFeed from '../components/PostFeed.jsx'
 
 const HomePage = () => {
 
@@ -16,31 +16,17 @@ const HomePage = () => {
         .order('created_at', { ascending: true })
 
         setPosts(data)
-        console.log(data)
         }
 
         fetchPosts()
     }, [])
 
-
-    /* search bar */
     return (
         <div className="post_feed">
 
           < CreatePost />
-          {
-            posts && posts.length > 0 ?
-            [...posts]
-            .sort((a, b) => a.id - b.id)
-            .map((post, index) =>
-              < Post
-                key={post.id}
-                id={post.id}
-                title={post.title}
-                created_at={post.created_at}
-                likes={post.likes}
-              />) : <h2>'thats rough buddy'</h2>
-          }
+          <PostFeed posts={posts} />
+
         </div>
     )
 }

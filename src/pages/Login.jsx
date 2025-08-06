@@ -24,7 +24,7 @@ function Login() {
     if (error || data.length === 0) {
       alert("Login failed");
     } else {
-      // Store in localStorage/sessionStorage
+      //Store in localStorage/sessionStorage
       localStorage.setItem('user', JSON.stringify(data[0]));
       navigate('/');
     }

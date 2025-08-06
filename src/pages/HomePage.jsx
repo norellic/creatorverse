@@ -53,7 +53,7 @@ const HomePage = () => {
         <div className="post_feed">
 
           < CreatePost />
-            <button onCick={sortbyCreatedDate}>Sort by Date</button>
+            <button onClick={sortbyCreatedDate}>Sort by Date</button>
             <button onClick={sortbyLikes}>Sort by Likes</button>
           <PostFeed posts={posts} />
 

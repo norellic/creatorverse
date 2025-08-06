@@ -20,6 +20,11 @@ function App() {
     return user ? children : <Navigate to="/login" />;
   }
 
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    window.location.href = '/login';
+  };
+
   const [search, setSearch] = useState("");
   const [matchingPosts, setMatchingPosts] = useState([])
 
@@ -41,7 +46,7 @@ function App() {
   return (
     <>
     <Router>
-      
+
       <div className="navbar">
 
         <div className="searchbar">
@@ -64,6 +69,7 @@ function App() {
           </div>
         </div>
         <Link to="/"><button className="navbar_text">Home</button></Link>
+        <button onClick={handleLogout}>Logout</button>
       </div>
 
       <div className="whole_page">

@@ -8,7 +8,6 @@ const PostFeed = ( { posts }) => {
           {
             posts && posts.length > 0 ?
             [...posts]
-            .sort((a, b) => a.id - b.id)
             .map((post, index) =>
               < Post
                 key={post.id}

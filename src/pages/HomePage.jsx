@@ -21,15 +21,40 @@ const HomePage = () => {
         fetchPosts()
     }, [])
 
+    const sortbyCreatedDate = () => {
+
+        const fetchPosts = async () => {
+            const {data} = await lockedOutSupabase
+            .from ('Posts')
+            .select()
+            .order('created_at', { ascending: false })
+    
+            setPosts(data)
+            }
+    
+            fetchPosts()
+    }
+
     const sortbyLikes = () => {
 
+        const fetchPosts = async () => {
+            const {data} = await lockedOutSupabase
+            .from ('Posts')
+            .select()
+            .order('likes', { ascending: false })
+    
+            setPosts(data)
+            }
+    
+            fetchPosts()
     }
 
     return (
         <div className="post_feed">
 
           < CreatePost />
-
+            <button onCick={sortbyCreatedDate}>Sort by Date</button>
+            <button onClick={sortbyLikes}>Sort by Likes</button>
           <PostFeed posts={posts} />
 
         </div>

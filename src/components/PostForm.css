@@ -1,0 +1,42 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Space between form groups */
+    max-width: 800px; /* Optional: constrain form width for better readability */
+    margin: 0 auto; /* Center the form */
+  }
+  
+  .form-group {
+    display: flex;
+    align-items: center; /* Vertically align label and input */
+    gap: 1rem; /* Space between label and input */
+  }
+  
+  .form-group label {
+    flex: 0 0 auto; /* Prevent label from stretching */
+    width: 120px; /* Fixed width for labels to align inputs */
+    text-align: right; /* Align label text to the right for a cleaner look */
+  }
+  
+  .form-group input {
+    flex: 1; /* Input takes remaining space */
+    min-width: 300px; /* Minimum width for inputs */
+    max-width: 500px; /* Maximum width for inputs */
+  }
+
+  @media (max-width: 600px) {
+    .form-group {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .form-group label {
+      width: auto;
+      text-align: left;
+    }
+  
+    .form-group input {
+      width: 100%;
+      max-width: none;
+    }
+  }

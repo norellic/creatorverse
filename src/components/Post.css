@@ -1,33 +1,20 @@
-.whole_post {
-    background-color: white;
-    border-radius: 20px;
-    border-style: solid;
-    border-color: #8B61A2;
+.post-card {
+    background: white;
     color: black;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    margin-bottom: 20px;
+    border-radius: 1rem;                 /* smooth rounded corners */
+    padding: 1.25rem;                    /* inner spacing for text/images */
+    margin: 1rem 0;                      /* space between cards */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08), 
+                0 1px 3px rgba(0,0,0,0.06); /* soft bevel-like shadow */
+  }
+  
+  .post-image {
+    display: block;
     width: 100%;
-}
-
-.edit_post { 
-    align-self: flex-end;
-    width: 20%;
-}
-
-.post_title {
-    align-self: flex-start;
-}
-
-.post_footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.post_footer p {
-    width: 45%;
-    word-wrap: break-word;
-}
+    height: auto;
+    margin: 0.75rem 0 1rem;              /* space around images */
+    border-radius: 0.5rem;               /* match card curve */
+    object-fit: cover;
+    max-height: 300px;                   /* keep consistency for big images */
+  }
+  

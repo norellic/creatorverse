@@ -51,6 +51,7 @@ const HomePage = () => {
 
     return (
         <div className="post_feed">
+            <h1>Creatorverse</h1>
 
           < CreatePost />
             <button onClick={sortbyCreatedDate}>Sort by Date</button>

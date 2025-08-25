@@ -5,7 +5,7 @@ import { lockedOutSupabase } from "../client.js";
 
 const EditPost = () => {
 
-    const [post, setPost] = useState({title: "", subtitle: "", image: ""})
+    const [post, setPost] = useState({title: "", subtitle: "", image: "", link: ""})
     const {id} = useParams()
 
     useEffect(() => {
@@ -28,7 +28,7 @@ const EditPost = () => {
 
         await lockedOutSupabase
         .from('Posts')
-        .update({title: post.title, subtitle: post.subtitle, image: post.image})
+        .update({title: post.title, subtitle: post.subtitle, image: post.image, link: post.link})
         .eq('id', id)
 
         window.location = "/";

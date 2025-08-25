@@ -11,13 +11,13 @@ const CreatePost = () => {
         await lockedOutSupabase
 
         .from('Posts')
-        .insert({title: post.title, subtitle: post.subtitle, image: post.image})
+        .insert({title: post.title, subtitle: post.subtitle, image: post.image, link: post.link})
         .select()
 
         window.location = "/"
     }
 
-    const [post, setPost] = useState({title: "", subtitle: "", image: ""})
+    const [post, setPost] = useState({title: "", subtitle: "", image: "", link: ""})
 
     const handleChange = (event) => {
         const {name, value} = event.target

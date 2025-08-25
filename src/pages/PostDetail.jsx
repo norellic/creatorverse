@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 
 const PostDetail = () => {
 
-    const [post, setPost] = useState({title: "", subtitle: "", image: ""})
+    const [post, setPost] = useState({title: "", subtitle: "", image: "", link: ""})
     const [comment, setComment] = useState("")
     const [comments, setComments] = useState([])
     const [likes, setLikes] = useState(0)
@@ -73,6 +73,7 @@ const PostDetail = () => {
         <div>
             <p>{post.title}</p>
             <p>{post.subtitle}</p>
+            <p>{post.link}</p>
             <p>{createdAt}</p>
             <button onClick={addLike}>{likes}</button>
 

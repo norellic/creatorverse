@@ -13,6 +13,9 @@ const PostFeed = ( { posts }) => {
                 key={post.id}
                 id={post.id}
                 title={post.title}
+                link= {post.link}
+                subtitle={post.subtitle}
+                image={post.image}
                 created_at={post.created_at}
                 likes={post.likes}
               />) : <h2>'thats rough buddy'</h2>
